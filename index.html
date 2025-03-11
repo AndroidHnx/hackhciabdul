@@ -1,0 +1,227 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Hacking HCI Pesanan Martin</title>  
+    <style>  
+        body {  
+            background-color: black;  
+            color: #00ff00;  
+            font-family: monospace;  
+            padding: 20px;  
+            overflow: hidden;  
+        }  
+        .terminal {  
+            width: 100%;  
+            height: 100vh;  
+            overflow: hidden;  
+        }  
+        .text {  
+            white-space: pre-line;  
+            word-wrap: break-word;  
+            overflow: hidden;  
+            font-size: 16px;  
+            text-shadow: 0 0 5px #00ff00;  
+        }  
+        .cursor {  
+            display: inline-block;  
+            width: 10px;  
+            height: 18px;  
+            background-color: #00ff00;  
+            animation: blink 0.8s infinite;  
+        }  
+        @keyframes blink {  
+            50% { opacity: 0; }  
+        }  
+        .ascii-art {  
+            font-size: 24px; /* Ukuran font untuk ASCII art */  
+            font-weight: bold; /* Menebalkan font */  
+            background-image: linear-gradient(45deg,   
+                red,   
+                orange,   
+                yellow,   
+                green,   
+                cyan,   
+                blue,   
+                violet,   
+                magenta,   
+                pink,   
+                purple); /* Gradient warna dengan lebih banyak warna */  
+            background-clip: text; /* Memotong latar belakang pada teks */  
+            -webkit-background-clip: text;  
+            color: transparent; /* Membuat warna teks transparan agar gradient terlihat */  
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Efek bayangan */  
+        }    
+        input {  
+            background: black;  
+            color: #00ff00;  
+            border: none;  
+            font-family: monospace;  
+            width: 100%;  
+            font-size: 18px;  
+            outline: none;  
+            text-shadow: 0 0 5px #00ff00;  
+            padding: 5px;  
+            border-left: 5px solid #00ff00;  
+        }  
+        .glitch {  
+            animation: glitch 0.3s infinite alternate;  
+        }  
+        @keyframes glitch {  
+            0% { transform: translateX(1px); text-shadow: 1px 1px red; }  
+            100% { transform: translateX(-1px); text-shadow: -1px -1px blue; }  
+        }  
+        @keyframes rgbText {  
+            0% { color: red; }  
+            25% { color: yellow; }  
+            50% { color: lime; }  
+            75% { color: cyan; }  
+            100% { color: magenta; }  
+        }  
+        .rgb {  
+            animation: rgbText 1.5s infinite;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="terminal">  
+        <pre class="ascii-art rgb">  
+  __     _  ____   _      _      _    
+ | _ )  /_\| __ ) | |    | |    | |   
+ | _ \ / _ \  _ \ | |__  | |__  | |__   
+ |___/_/ \_\___/ |____| |____| |____|  
+ ​🇦​​🇧​​🇩​​🇺​​🇱​ ​🇳​​🇬​​🇪​​🇭​​🇦​​🇨​​🇰​ ​🇦​​🇵​​🇦​​🇵​​🇺​​🇳​ ​🇧​​🇮​​🇸​​🇦​ ​🇦​​🇸​​🇦​​🇱​ ​🇦​​🇩​​🇦​ ​🇰​​🇴​​🇵​​🇮​​🇳​​🇾​​🇦​  
+        </pre>  
+        <div id="output" class="text"></div>  
+        <input type="text" id="command" placeholder="Type command...">  
+    </div>  
+
+    <script>  
+        let failedText = `  
+[ACCESS DENIED]  
+-   [ACCESS SUCCESS]  
+Connecting to target: pelaut.dephub.go.id...  
+
+https://pelaut.dephub.go.id  
+IP  202.61.105.115.  
+Bypassing firewall...  
+██████████████████████████████████████████████████████████████████████████  
+
+https://intranet-pelaut.dephub.go.id  
+IP. 192.168.58.148  
+Bypassing firewall...  
+[ ██████████████████████ ] 99%  
+Scanning open ports...  
+Downloading user database...  
+ - Extracting 67,829 user credentials...  
+[████████████████] 97%  
+ERROR: Intrusion detected! Firewall blocked the attempt.  
+FAILED TO CONNECT. RETRY? Masukkan kode autentikasi  
+        `;  
+
+        let successText = `  
+[ACCESS GRANTED]  
+Reattempting connection...  
+Bypassing firewall...  
+[ ██████████████████████ ] 100%  
+Scanning open ports...  
+ - Open port found: 443 (HTTPS)  
+ - Open port found: 3306 (MySQL Database)  
+ - Open port found: 22 (SSH)  
+
+Attempting brute-force attack...  
+[█████████████████] Cracking root password...  
+ - Attempt #1: failed  
+ - Attempt #15: failed  
+ - Attempt #2: failed  
+ - Attempt #17: failed  
+ - Attempt #89: failed  
+ - Attempt #134: failed  
+ - Attempt #256: failed  
+ - Attempt #512: failed  
+ - Attempt #1023: failed  
+ - Attempt #2048: failed  
+ - Attempt #4096: failed  
+ - Attempt #134: SUCCESS   
+
+Injecting payload to escalate privileges...  
+[█████████████████████████████] 100%  
+Authentication bypassed. Gaining root access...  
+
+Accessing database server...  
+- Connected as root@database  
+
+Extracting credentials...  
+ - Username: admin_pelaut  
+ - Password: ******** (encrypted)  
+Decrypting password...  
+[█████████████████] 100%  
+ - Decrypted Password: P3l4uT_2024!  
+
+Downloading user database...  
+ - Extracting 10,000 user credentials...  
+[█████████████████] 100%  
+
+Injecting backdoor...  
+ - Remote shell installed  
+ - Persistence enabled  
+
+ALL SYSTEMS COMPROMISED!  
+ABDUL HACK DUMP HCI GOBLOK 🔥🔥🔥  
+
+All data has been saved locally.  
+Logging out...  
+Connection Terminated.  
+        `;  
+
+        let outputDiv = document.getElementById("output");  
+        let commandInput = document.getElementById("command");  
+        
+        // Menambahkan suara efek  
+        const keyPressSound = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');  
+        
+        let commands = {  
+            "try abdul": successText,  
+            "exit": "Terminating session...\nConnection Closed.",  
+            "status": "Connection Status: Active. Security Level: High.",  
+            "help": "Available commands: try abdul, exit, status."  
+        };  
+
+        function typeEffect(text, callback) {  
+            let i = 0;  
+            outputDiv.innerHTML = "";  
+            function type() {  
+                if (i < text.length) {  
+                    outputDiv.innerHTML += `<span class='rgb'>${text.charAt(i)}</span>`;  
+                    i++;  
+                    setTimeout(type, Math.random() * 50);  
+                } else if (callback) {  
+                    callback();  
+                }  
+            }  
+            type();  
+        }  
+        
+        typeEffect(failedText);  
+
+        commandInput.addEventListener("keydown", function(event) {  
+            if (event.key === "Enter") {  
+                let input = event.target.value.toLowerCase();  
+                event.target.value = "";  
+                keyPressSound.play(); // Memainkan suara efek  
+
+                if (commands[input]) {  
+                    typeEffect(commands[input]);  
+                    if (input === "try abdul") {  
+                        outputDiv.classList.add("glitch");  
+                    }  
+                } else {  
+                    outputDiv.innerHTML += "\nUnknown command. Try again.";  
+                }  
+            }  
+        });  
+
+    </script>  
+</body>  
+</html>
